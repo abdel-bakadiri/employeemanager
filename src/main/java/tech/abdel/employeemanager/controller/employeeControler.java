@@ -2,12 +2,11 @@ package tech.abdel.employeemanager.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import tech.abdel.employeemanager.model.Employee;
 import tech.abdel.employeemanager.service.EmployeeService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("employee")
@@ -16,6 +15,12 @@ public class employeeControler {
 
     public employeeControler(EmployeeService employeeService) {
         this.employeeService = employeeService;
+    }
+
+    @GetMapping("all")
+    public ResponseEntity<List<Employee>> getAllEmployees() {
+        List<Employee> employees = employeeService.findAllEmployees();
+        return new ResponseEntity<>(employees, HttpStatus.OK);
     }
 
     @PostMapping("/add")

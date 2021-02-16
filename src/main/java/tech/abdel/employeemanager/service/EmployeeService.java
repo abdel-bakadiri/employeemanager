@@ -6,6 +6,7 @@ import tech.abdel.employeemanager.model.Employee;
 import tech.abdel.employeemanager.repo.EmployeeRepo;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -16,6 +17,10 @@ public class EmployeeService {
     @Autowired()
     public EmployeeService(EmployeeRepo employeeRepo) {
         this.employeeRepo = employeeRepo;
+    }
+
+    public List<Employee> findAllEmployees() {
+        return employeeRepo.findAll();
     }
 
     public Employee addEmployer(Employee employee) {
